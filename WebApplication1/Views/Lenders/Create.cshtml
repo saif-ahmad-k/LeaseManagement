@@ -1,0 +1,41 @@
+﻿@model WebApplication1.Models.tblLender
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="content container-fluid">
+
+        <!-- /Page Header -->
+        <div class="card mb-4 mt-3" style="padding-top:10px">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Create new</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm">
+                        <form class="needs-validation" novalidate>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.Label("Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12 mb-3">
+                                    @Html.EditorFor(p => p.Name, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                </div>
+                            </div>
+                            
+                            <br />
+
+                            <div class=" row pull-right">
+                                <button type="submit" id="btnSave" class="btn btn-primary" style="padding-right:15px">Save</button>
+                                <div class="mt-0 btn btn-warning">@Html.ActionLink("Back to List", "Index")</div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

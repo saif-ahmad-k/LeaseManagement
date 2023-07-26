@@ -1,0 +1,108 @@
+﻿@model WebApplication1.Models.tblUser
+
+@{
+    Layout = null;
+    var message = TempData["Message"];
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Login</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/assets/img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/font-awesome.min.css">
+
+    <!-- Feathericon CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/feather.css">
+
+    <!--font style-->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="assets/js/html5shiv.min.js"></script>
+        <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="account-page">
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <div class="account-content">
+
+            <div class="container">
+
+                <!-- Account Logo -->
+                @*<div class="account-logo">
+                        <a href="index.html"><img src="assets/img/logo.png" alt="Dreamguy's Technologies"></a>
+                    </div>*@
+                <!-- /Account Logo -->
+
+                <div class="account-box">
+                    <div class="account-wrapper">
+                        <h3 class="account-title">Login</h3>
+                        @*<p class="account-subtitle">Access to our dashboard</p>*@
+
+                        <!-- Account Form -->
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <form style="height:407px;width:361px;">
+                                @if (message != null)
+                                {
+                                    <div class="alert alert-success">
+                                        <strong>@message.ToString()</strong>
+                                    </div>
+                                }
+                                <div class="inset">
+                                    <p>
+                                        @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                    </p>
+                                    <p>
+                                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", required = "required" } })
+                                    </p>
+                                    <span style="color: red;font-size: 14px;" id="errMsg"></span>
+                                </div>
+                                <div class="form-group text-center">
+                                    <div style="padding-bottom:10px"><button type="submit" class="btn btn-primary account-btn" name="command" value="Login">Log in </button></div>
+                                    @*<div><button type="submit" class="btn btn-primary account-btn" name="command" value="Clockout">Clock out</button></div>*@
+                                    @*@Html.ActionLink("Forget Password?", "ForgetPassword", "Auth")*@
+                                </div>
+                            </form>
+
+                        }
+                        <!-- /Account Form -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Main Wrapper -->
+    <!-- jQuery -->
+    <script src="~/Content/assets/js/jquery-3.5.0.min.js"></script>
+
+    <!-- Bootstrap Core JS -->
+    <script src="~/Content/assets/js/popper.min.js"></script>
+    <script src="~/Content/assets/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/Content/assets/js/app.js"></script>
+
+</body>
+</html>

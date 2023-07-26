@@ -1,0 +1,388 @@
+﻿<!DOCTYPE html>
+@{
+    var role = Session["Role"];
+    string rolename = "";
+    if (role != null)
+    {
+        rolename = role.ToString();
+    }
+}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Lease Management System</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/assets/img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/font-awesome.min.css">
+
+    <!-- Feathericon CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/feather.css">
+
+    <!--font style-->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+
+    <!-- Chart CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/morris/morris.css">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/theme-settings.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+    <!-- Datatable CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+    @RenderSection("Scripts", required: false)
+    <!-- jQuery -->
+    <script type="text/javascript" language="javascript" src="~/Content/assets/js/jquery-3.5.0.min.js"></script>
+    <script type="text/javascript" language="javascript" src="~/Content/assets/js/jquery-ui.min.js"></script>
+    <!-- Bootstrap Core JS -->
+    <script type="text/javascript" language="javascript" src="~/Content/assets/js/popper.min.js"></script>
+    <script type="text/javascript" language="javascript" src="~/Content/assets/js/bootstrap.min.js"></script>
+
+    <!-- Slimscroll JS -->
+    <script type="text/javascript" language="javascript" src="~/Content/assets/js/jquery.slimscroll.min.js"></script>
+
+    <!-- Datatable JS -->
+    <script type="text/javascript" language="javascript" src="~/Content/assets/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="~/Content/assets/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Chart JS -->
+    <script type="text/javascript" language="javascript" src="~/Content/assets/js/morris.js"></script>
+
+    <script type="text/javascript" language="javascript" src="~/Content/assets/plugins/raphael/raphael.min.js"></script>
+    <script type="text/javascript" language="javascript" src="~/Content/assets/js/chart.js"></script>
+    <script type="text/javascript" language="javascript" src="~/Content/assets/js/linebar.min.js"></script>
+    <script type="text/javascript" language="javascript" src="~/Content/assets/js/piechart.js"></script>
+    <script type="text/javascript" language="javascript" src="~/Content/assets/js/apex.min.js"></script>
+
+    <!-- theme JS -->
+    <script type="text/javascript" language="javascript" src="~/Content/assets/js/theme-settings.js"></script>
+
+    <!-- Custom JS -->
+    <script type="text/javascript" language="javascript" src="~/Content/assets/js/app.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+    <script>
+
+    </script>
+
+</head>
+<body id="skin-color" class="skin-color inter">
+    <script>0</script>
+    <div class="main-wrapper">
+        <!-- Header -->
+        <div class="header" id="heading">
+
+            <!-- Logo -->
+            <div class="header-left">
+                <a href="@Url.Action("Index", "Home")" class="logo">
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+                    @*<span class="logo-mini"><b>A</b>LT</span>*@
+                    <!-- logo for regular state and mobile devices -->
+                    @*<img src="~/Images/STS1.png" style=" height: 60px; width: 90px;" />*@
+
+                </a>
+            </div>
+            <!-- /Logo -->
+
+            <a id="toggle_btn" href="javascript:void(0);">
+                <span class="bar-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </a>
+
+            <a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
+
+            <!-- Header Menu -->
+            <ul class="nav user-menu">
+                <li class="nav-item dropdown has-arrow main-drop">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <span class="user-img">
+                            @*<img src="" class="user-image" alt="">*@
+                        </span>
+                        <span></span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="@Url.Action("Logout", "Auth")" class="dropdown-item">Sign out</a>
+                    </div>
+                </li>
+            </ul>
+            <!-- /Header Menu -->
+            <!-- Mobile Menu -->
+            <div class="dropdown mobile-user-menu">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a href="@Url.Action("Logout", "Auth")" class="dropdown-item">Sign out</a>
+                </div>
+            </div>
+            <!-- /Mobile Menu -->
+
+        </div>
+        <!-- /Header -->
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+
+                    <ul>
+                        <li class="submenu">
+                            <a href="#"><i class="fa fa-book"></i> <span> Customer Management</span> <span class="menu-arrow"></span></a>
+                            <ul class="sub-menus">
+                                <li><a id="aLink" href="@Url.Action("Index", "Customers")" class="active"><i class="fa fa-list"></i> All Customers</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fa fa-circle-o"></i> <span> Lender Management</span> <span class="menu-arrow"></span></a>
+                            <ul class="sub-menus">
+                                <li><a id="aLink" href="@Url.Action("Index", "Lenders")" class="active"><i class="fa fa-list"></i> All Lenders</a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>Lease Management</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="sub-menus">
+                                <li><a href="@Url.Action("UploadExcel", "LeaseDetails")" class="active"><i class="fa fa-plus-circle"></i> Import Excel Lease</a></li>
+
+                                <li><a href="@Url.Action("Create", "LeaseDetails")" class="active"><i class="fa fa-plus-circle"></i> Add new Lease</a></li>
+                                <li><a href="@Url.Action("Index", "LeaseDetails")" class="active"><i class="fa fa-list"></i> Lease List</a></li>
+                                @*@if (rolename == "Admin")
+                                    {
+                                    }*@
+                            </ul>
+                        </li>
+                        @if (rolename == "Admin")
+                        {
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-user"></i>
+                                    <span>User Management</span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <ul class="sub-menus">
+                                    <li><a href="@Url.Action("Create", "Users")" class="active"><i class="fa fa-plus-circle"></i> Add new User</a></li>
+                                    <li><a href="@Url.Action("Index", "Users")" class="active"><i class="fa fa-list"></i> User List</a></li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Sidebar -->
+
+        <div class="page-wrapper">
+            @RenderBody()
+
+        </div>
+        @*<footer class="footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 2.4.0
+                </div>
+                <strong>Copyright &copy; 2020-2022 <a href="https://lab1472.com">Lab1472</a>.</strong> All rights
+                reserved.
+            </footer>*@
+        <div class="modal right fade settings" id="settings" role="dialog" aria-modal="true">
+            <div class="toggle-close">
+                <div class="toggle" data-toggle="modal" data-target="#settings">
+                    <i class="fa fa-cog fa-w-16 fa-spin fa-2x"></i>
+                </div>
+
+            </div>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header p-3">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel2">Settings</h4>
+                    </div>
+                    <div class="modal-body pb-3">
+                        <div class="scroll">
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item border-0">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="pb-2">Primary Skin</h5>
+                                            </div>
+                                            <div class="col text-right">
+                                                <a class="reset text-white bg-dark" id="ChangeprimaryDefault">Reset Default</a>
+                                            </div>
+                                        </div>
+                                        <div class="theme-settings-swatches">
+                                            <div class="themes">
+                                                <div class="themes-body">
+                                                    <ul id="theme-change" class="theme-colors border-0 list-inline-item list-unstyled mb-0">
+                                                        <li class="theme-title">Solid Color</li>
+                                                        <li class="list-inline-item"><span class="theme-solid-black bg-black"></span></li>
+                                                        <li class="list-inline-item"><span class="theme-solid-pink bg-primary"></span></li>
+                                                        <li class="list-inline-item"><span class="theme-solid-orange bg-secondary1"></span></li>
+                                                        <li class="list-inline-item"><span class="theme-solid-purple bg-success"></span></li>
+                                                        <!-- <li class="list-inline-item"><span class="theme-solid-blue bg-info"></span></li> -->
+                                                        <li class="list-inline-item"><span class="theme-solid-green bg-warnings"></span></li>
+                                                        <li><br /></li>
+                                                        <li><hr /></li>
+
+                                                        <li class="theme-title">Gradient Color</li>
+
+
+                                                        <li class="list-inline-item"><span class="theme-orange bg-sunny-morning"></span></li>
+                                                        <li class="list-inline-item"><span class="theme-blue bg-tempting-azure"></span></li>
+                                                        <li class="list-inline-item"><span class="theme-grey bg-amy-crisp"></span></li>
+                                                        <li class="list-inline-item"><span class="theme-lgrey bg-mean-fruit"></span></li>
+                                                        <li class="list-inline-item"><span class="theme-dblue bg-malibu-beach"></span></li>
+                                                        <li class="list-inline-item"><span class="theme-pink bg-ripe-malin"></span></li>
+                                                        <li class="list-inline-item"><span class="theme-purple bg-plum-plate"></span></li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item border-0">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="pb-2">Header Style</h5>
+                                            </div>
+                                            <div class="col text-right">
+                                                <a class="reset text-white bg-dark" id="ChageheaderDefault">Reset Default</a>
+                                            </div>
+                                        </div>
+                                        <div class="theme-settings-swatches">
+                                            <div class="themes">
+                                                <div class="themes-body">
+                                                    <ul id="theme-change1" class="theme-colors border-0 list-inline-item list-unstyled mb-0">
+                                                        <li class="theme-title">Solid Color</li>
+                                                        <li class="list-inline-item"><span class="header-solid-black bg-black"></span></li>
+                                                        <li class="list-inline-item"><span class="header-solid-pink bg-primary"></span></li>
+                                                        <li class="list-inline-item"><span class="header-solid-orange bg-secondary1"></span></li>
+                                                        <li class="list-inline-item"><span class="header-solid-purple bg-success"></span></li>
+                                                        <!-- <li class="list-inline-item"><span class="header-solid-blue bg-info"></span></li> -->
+                                                        <li class="list-inline-item"><span class="header-solid-green bg-warnings"></span></li>
+                                                        <li><br /></li>
+                                                        <li><hr /></li>
+
+                                                        <li class="theme-title">Gradient Color</li>
+
+                                                        <li class="list-inline-item"><span class="header-gradient-color1 bg-sunny-morning"></span></li>
+                                                        <li class="list-inline-item"><span class="header-gradient-color2 bg-tempting-azure"></span></li>
+                                                        <li class="list-inline-item"><span class="header-gradient-color3 bg-amy-crisp"></span></li>
+                                                        <li class="list-inline-item"><span class="header-gradient-color4 bg-mean-fruit"></span></li>
+                                                        <li class="list-inline-item"><span class="header-gradient-color5 bg-malibu-beach"></span></li>
+                                                        <li class="list-inline-item"><span class="header-gradient-color6 bg-ripe-malin"></span></li>
+                                                        <li class="list-inline-item"><span class="header-gradient-color7 bg-plum-plate"></span></li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="list-group m-0">
+                                    <li class="list-group-item border-0">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="pb-2">Apps Sidebar Style</h5>
+                                            </div>
+                                            <div class="col  text-right">
+                                                <a class="reset text-white bg-dark" id="ChagesidebarDefault">Reset Default</a>
+                                            </div>
+                                        </div>
+                                        <div class="theme-settings-swatches">
+                                            <div class="themes">
+                                                <div class="themes-body">
+                                                    <ul id="theme-change2" class="theme-colors border-0 list-inline-item list-unstyled">
+                                                        <li class="theme-title">Solid Color</li>
+                                                        <li class="list-inline-item"><span class="sidebar-solid-black bg-black"></span></li>
+                                                        <li class="list-inline-item"><span class="sidebar-solid-pink bg-primary"></span></li>
+                                                        <li class="list-inline-item"><span class="sidebar-solid-orange bg-secondary1"></span></li>
+                                                        <li class="list-inline-item"><span class="sidebar-solid-purple bg-success"></span></li>
+                                                        <!-- <li class="list-inline-item"><span class="sidebar-solid-blue bg-info"></span></li> -->
+                                                        <li class="list-inline-item"><span class="sidebar-solid-green bg-warnings"></span></li>
+                                                        <li><br /></li>
+                                                        <li><hr /></li>
+
+                                                        <li class="theme-title">Gradient Color</li>
+
+                                                        <li class="list-inline-item"><span class="sidebar-gradient-color1 bg-sunny-morning"></span></li>
+                                                        <li class="list-inline-item"><span class="sidebar-gradient-color2 bg-tempting-azure"></span></li>
+                                                        <li class="list-inline-item"><span class="sidebar-gradient-color3 bg-amy-crisp"></span></li>
+                                                        <li class="list-inline-item"><span class="sidebar-gradient-color4 bg-mean-fruit"></span></li>
+                                                        <li class="list-inline-item"><span class="sidebar-gradient-color5 bg-malibu-beach"></span></li>
+                                                        <li class="list-inline-item"><span class="sidebar-gradient-color6 bg-ripe-malin"></span></li>
+                                                        <li class="list-inline-item"><span class="sidebar-gradient-color7 bg-plum-plate"></span></li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="row Default-font">
+                                    <div class="col">
+                                        <h5 class="pb-2">Font Style</h5>
+                                    </div>
+                                    <div class="col text-right">
+                                        <a class="reset text-white bg-dark font-Default">Reset Default</a>
+                                    </div>
+                                </div>
+                                <ul class="list-inline-item list-unstyled font-family border-0 p-0">
+
+                                    <li class="list-inline-item roboto-font">Roboto</li>
+                                    <li class="list-inline-item poppins-font">Poppins</li>
+                                    <li class="list-inline-item montserrat-font">Montserrat</li>
+                                    <li class="list-inline-item inter-font">Inter</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--theme settings-->
+        <div class="sidebar-contact">
+            <div class="toggle" data-toggle="modal" data-target="#settings"><i class="fa fa-cog fa-w-16 fa-spin fa-2x"></i></div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+<script>
+    $('.date-picker').datepicker({
+        dateFormat: "dd/M/yy"
+    });
+</script>

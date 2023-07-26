@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WebApplication1.Models.tblLender>
+
+@{
+    ViewBag.Title = "Lenders List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var role = Session["Role"];
+    string rolename = "";
+    if (role != null)
+    {
+        rolename = role.ToString();
+    }
+}
+<form class="form-horizontal">
+    <div class="content container-fluid" style="padding-top:15px">
+        <div class="row col-md-12">
+            <div class="col-md-11"><h4>@ViewBag.Title</h4></div>
+            <div class="col-md-1 pull-right">
+                <a type="button" href="@Url.Action("Create", "Lenders")" class="btn btn-primary">Add New</a>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card mb-0 ml-2 mr-2">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example14" class="datatable table table-stripped mb-0 datatables">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayName("Name")
+                                </th>
+
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+
+                                    <td>
+                                        @if (rolename == "Admin")
+                                        {
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

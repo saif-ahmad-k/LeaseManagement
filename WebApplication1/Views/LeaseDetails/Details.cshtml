@@ -1,0 +1,95 @@
+﻿@model WebApplication1.Models.tblLesseDetail
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblLesseDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Lesse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lesse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LesseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LesseDate.Value.ToString(""))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FundDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FundDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstPaymentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstPaymentDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstPaymentToBankDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstPaymentToBankDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LesseMaturityDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LesseMaturityDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comments1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comments2)
+        </dd>
+
+        
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

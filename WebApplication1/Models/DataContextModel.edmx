@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LeaseMgtDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLesseDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Lesse" Type="varchar" MaxLength="255" />
+          <Property Name="LesseDate" Type="datetime" />
+          <Property Name="FundDate" Type="datetime" />
+          <Property Name="FirstPaymentDate" Type="datetime" />
+          <Property Name="FirstPaymentToBankDate" Type="datetime" />
+          <Property Name="LesseMaturityDate" Type="datetime" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="LeaseID" Type="varchar" MaxLength="150" />
+          <Property Name="DealOrigin" Type="varchar" MaxLength="50" />
+          <Property Name="LeaseType" Type="varchar" MaxLength="50" />
+          <Property Name="TotalLeaase" Type="varchar" MaxLength="150" />
+          <Property Name="MonthlyPayment" Type="varchar" MaxLength="150" />
+          <Property Name="Term" Type="varchar" MaxLength="150" />
+          <Property Name="Lender" Type="varchar" MaxLength="50" />
+          <Property Name="LeaseFee" Type="varchar" MaxLength="150" />
+          <Property Name="VIN" Type="nvarchar(max)" />
+          <Property Name="Residual" Type="varchar" MaxLength="150" />
+          <Property Name="EstimatedPropertyTax" Type="varchar" MaxLength="150" />
+          <Property Name="MMA" Type="varchar" MaxLength="150" />
+          <Property Name="AccountRep1" Type="nvarchar" MaxLength="140" />
+          <Property Name="AccountRep2" Type="nvarchar" MaxLength="140" />
+          <Property Name="AccountRep3" Type="nvarchar" MaxLength="140" />
+          <Property Name="InsuranceProvider" Type="nvarchar" MaxLength="300" />
+          <Property Name="InsuranceExpiry" Type="datetime" />
+          <Property Name="VendorCost" Type="varchar" MaxLength="150" />
+          <Property Name="LeaseDocumentForm" Type="nvarchar" MaxLength="100" />
+          <Property Name="TitleHolder" Type="varchar" MaxLength="50" />
+          <Property Name="IsSaleTaxExept" Type="bit" />
+          <Property Name="LeaseTerminationDate" Type="datetime" />
+          <Property Name="TitleStatus" Type="nvarchar" MaxLength="40" />
+          <Property Name="UCCStatus" Type="nvarchar" MaxLength="40" />
+          <Property Name="UCCDate" Type="datetime" />
+          <Property Name="PropertyTaxStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="CollateralStreet" Type="nvarchar" MaxLength="200" />
+          <Property Name="CollateralCity" Type="varchar" MaxLength="40" />
+          <Property Name="CollateralState" Type="varchar" MaxLength="10" />
+          <Property Name="CollateralZipCode" Type="varchar" MaxLength="50" />
+          <Property Name="CollateralCountry" Type="varchar" MaxLength="50" />
+          <Property Name="MailingStreet" Type="nvarchar" MaxLength="200" />
+          <Property Name="MailingCity" Type="varchar" MaxLength="40" />
+          <Property Name="MailingState" Type="varchar" MaxLength="10" />
+          <Property Name="MailingZipCode" Type="varchar" MaxLength="150" />
+          <Property Name="Comments1" Type="nvarchar" MaxLength="350" />
+          <Property Name="Comments2" Type="nvarchar" MaxLength="350" />
+          <Property Name="LeaseYear" Type="varchar" MaxLength="150" />
+          <Property Name="LeaseMonthAndYear" Type="nvarchar" MaxLength="30" />
+          <Property Name="FundedMonthAndYear" Type="nvarchar" MaxLength="30" />
+          <Property Name="LeaseCount" Type="varchar" MaxLength="150" />
+          <Property Name="BANKCHK_LESSEEBANK_TAB" Type="nvarchar" MaxLength="330" />
+          <Property Name="BANKCHK_BANKYEAR_TAB" Type="nvarchar" MaxLength="330" />
+          <Property Name="BANKCHK_BANKMONTH_TAB" Type="nvarchar" MaxLength="330" />
+          <Property Name="LESSEECHK_LESSEEBANK_TAB" Type="nvarchar" MaxLength="330" />
+          <Property Name="LESSEECHK_LESSEEYEAR_TAB" Type="nvarchar" MaxLength="330" />
+          <Property Name="LESSEECHK_LESSEEMONTH_TAB" Type="nvarchar" MaxLength="330" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="LenderID" Type="int" />
+          <Property Name="LeaseRate" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LicensePlate" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Role" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <Association Name="FK__tblLesseD__Custo__57DD0BE4">
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
+          <End Role="tblLesseDetail" Type="Self.tblLesseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblLesseDetail">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLesseD__Lende__58D1301D">
+          <End Role="tblLender" Type="Self.tblLender" Multiplicity="0..1" />
+          <End Role="tblLesseDetail" Type="Self.tblLesseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblLesseDetail">
+              <PropertyRef Name="LenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LeaseMgtDBModelStoreContainer">
+          <EntitySet Name="tblCustomer" EntityType="Self.tblCustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLender" EntityType="Self.tblLender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLesseDetail" EntityType="Self.tblLesseDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblLesseD__Custo__57DD0BE4" Association="Self.FK__tblLesseD__Custo__57DD0BE4">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblLesseDetail" EntitySet="tblLesseDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLesseD__Lende__58D1301D" Association="Self.FK__tblLesseD__Lende__58D1301D">
+            <End Role="tblLender" EntitySet="tblLender" />
+            <End Role="tblLesseDetail" EntitySet="tblLesseDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LeaseMgtDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DataContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCustomers" EntityType="LeaseMgtDBModel.tblCustomer" />
+          <EntitySet Name="tblLenders" EntityType="LeaseMgtDBModel.tblLender" />
+          <EntitySet Name="tblLesseDetails" EntityType="LeaseMgtDBModel.tblLesseDetail" />
+          <EntitySet Name="tblUsers" EntityType="LeaseMgtDBModel.tblUser" />
+          <AssociationSet Name="FK__tblLesseD__Custo__57DD0BE4" Association="LeaseMgtDBModel.FK__tblLesseD__Custo__57DD0BE4">
+            <End Role="tblCustomer" EntitySet="tblCustomers" />
+            <End Role="tblLesseDetail" EntitySet="tblLesseDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLesseD__Lende__58D1301D" Association="LeaseMgtDBModel.FK__tblLesseD__Lende__58D1301D">
+            <End Role="tblLender" EntitySet="tblLenders" />
+            <End Role="tblLesseDetail" EntitySet="tblLesseDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblLesseDetails" Relationship="LeaseMgtDBModel.FK__tblLesseD__Custo__57DD0BE4" FromRole="tblCustomer" ToRole="tblLesseDetail" />
+        </EntityType>
+        <EntityType Name="tblLender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblLesseDetails" Relationship="LeaseMgtDBModel.FK__tblLesseD__Lende__58D1301D" FromRole="tblLender" ToRole="tblLesseDetail" />
+        </EntityType>
+        <EntityType Name="tblLesseDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Lesse" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LesseDate" Type="DateTime" Precision="3" />
+          <Property Name="FundDate" Type="DateTime" Precision="3" />
+          <Property Name="FirstPaymentDate" Type="DateTime" Precision="3" />
+          <Property Name="FirstPaymentToBankDate" Type="DateTime" Precision="3" />
+          <Property Name="LesseMaturityDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LeaseID" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DealOrigin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LeaseType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TotalLeaase" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="MonthlyPayment" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Term" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Lender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LeaseFee" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="VIN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Residual" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EstimatedPropertyTax" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="MMA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AccountRep1" Type="String" MaxLength="140" FixedLength="false" Unicode="true" />
+          <Property Name="AccountRep2" Type="String" MaxLength="140" FixedLength="false" Unicode="true" />
+          <Property Name="AccountRep3" Type="String" MaxLength="140" FixedLength="false" Unicode="true" />
+          <Property Name="InsuranceProvider" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="InsuranceExpiry" Type="DateTime" Precision="3" />
+          <Property Name="VendorCost" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="LeaseDocumentForm" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TitleHolder" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsSaleTaxExept" Type="Boolean" />
+          <Property Name="LeaseTerminationDate" Type="DateTime" Precision="3" />
+          <Property Name="TitleStatus" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="UCCStatus" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="UCCDate" Type="DateTime" Precision="3" />
+          <Property Name="PropertyTaxStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CollateralStreet" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CollateralCity" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="CollateralState" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CollateralZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CollateralCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MailingStreet" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MailingCity" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="MailingState" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MailingZipCode" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Comments1" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Comments2" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="LeaseYear" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="LeaseMonthAndYear" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="FundedMonthAndYear" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="LeaseCount" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BANKCHK_LESSEEBANK_TAB" Type="String" MaxLength="330" FixedLength="false" Unicode="true" />
+          <Property Name="BANKCHK_BANKYEAR_TAB" Type="String" MaxLength="330" FixedLength="false" Unicode="true" />
+          <Property Name="BANKCHK_BANKMONTH_TAB" Type="String" MaxLength="330" FixedLength="false" Unicode="true" />
+          <Property Name="LESSEECHK_LESSEEBANK_TAB" Type="String" MaxLength="330" FixedLength="false" Unicode="true" />
+          <Property Name="LESSEECHK_LESSEEYEAR_TAB" Type="String" MaxLength="330" FixedLength="false" Unicode="true" />
+          <Property Name="LESSEECHK_LESSEEMONTH_TAB" Type="String" MaxLength="330" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="LenderID" Type="Int32" />
+          <Property Name="LeaseRate" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LicensePlate" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCustomer" Relationship="LeaseMgtDBModel.FK__tblLesseD__Custo__57DD0BE4" FromRole="tblLesseDetail" ToRole="tblCustomer" />
+          <NavigationProperty Name="tblLender" Relationship="LeaseMgtDBModel.FK__tblLesseD__Lende__58D1301D" FromRole="tblLesseDetail" ToRole="tblLender" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__tblLesseD__Custo__57DD0BE4">
+          <End Type="LeaseMgtDBModel.tblCustomer" Role="tblCustomer" Multiplicity="0..1" />
+          <End Type="LeaseMgtDBModel.tblLesseDetail" Role="tblLesseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblLesseDetail">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLesseD__Lende__58D1301D">
+          <End Type="LeaseMgtDBModel.tblLender" Role="tblLender" Multiplicity="0..1" />
+          <End Type="LeaseMgtDBModel.tblLesseDetail" Role="tblLesseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblLesseDetail">
+              <PropertyRef Name="LenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LeaseMgtDBModelStoreContainer" CdmEntityContainer="DataContext">
+          <EntitySetMapping Name="tblCustomers">
+            <EntityTypeMapping TypeName="LeaseMgtDBModel.tblCustomer">
+              <MappingFragment StoreEntitySet="tblCustomer">
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLenders">
+            <EntityTypeMapping TypeName="LeaseMgtDBModel.tblLender">
+              <MappingFragment StoreEntitySet="tblLender">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLesseDetails">
+            <EntityTypeMapping TypeName="LeaseMgtDBModel.tblLesseDetail">
+              <MappingFragment StoreEntitySet="tblLesseDetail">
+                <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+                <ScalarProperty Name="LeaseRate" ColumnName="LeaseRate" />
+                <ScalarProperty Name="LenderID" ColumnName="LenderID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="LESSEECHK_LESSEEMONTH_TAB" ColumnName="LESSEECHK_LESSEEMONTH_TAB" />
+                <ScalarProperty Name="LESSEECHK_LESSEEYEAR_TAB" ColumnName="LESSEECHK_LESSEEYEAR_TAB" />
+                <ScalarProperty Name="LESSEECHK_LESSEEBANK_TAB" ColumnName="LESSEECHK_LESSEEBANK_TAB" />
+                <ScalarProperty Name="BANKCHK_BANKMONTH_TAB" ColumnName="BANKCHK_BANKMONTH_TAB" />
+                <ScalarProperty Name="BANKCHK_BANKYEAR_TAB" ColumnName="BANKCHK_BANKYEAR_TAB" />
+                <ScalarProperty Name="BANKCHK_LESSEEBANK_TAB" ColumnName="BANKCHK_LESSEEBANK_TAB" />
+                <ScalarProperty Name="LeaseCount" ColumnName="LeaseCount" />
+                <ScalarProperty Name="FundedMonthAndYear" ColumnName="FundedMonthAndYear" />
+                <ScalarProperty Name="LeaseMonthAndYear" ColumnName="LeaseMonthAndYear" />
+                <ScalarProperty Name="LeaseYear" ColumnName="LeaseYear" />
+                <ScalarProperty Name="Comments2" ColumnName="Comments2" />
+                <ScalarProperty Name="Comments1" ColumnName="Comments1" />
+                <ScalarProperty Name="MailingZipCode" ColumnName="MailingZipCode" />
+                <ScalarProperty Name="MailingState" ColumnName="MailingState" />
+                <ScalarProperty Name="MailingCity" ColumnName="MailingCity" />
+                <ScalarProperty Name="MailingStreet" ColumnName="MailingStreet" />
+                <ScalarProperty Name="CollateralCountry" ColumnName="CollateralCountry" />
+                <ScalarProperty Name="CollateralZipCode" ColumnName="CollateralZipCode" />
+                <ScalarProperty Name="CollateralState" ColumnName="CollateralState" />
+                <ScalarProperty Name="CollateralCity" ColumnName="CollateralCity" />
+                <ScalarProperty Name="CollateralStreet" ColumnName="CollateralStreet" />
+                <ScalarProperty Name="PropertyTaxStatus" ColumnName="PropertyTaxStatus" />
+                <ScalarProperty Name="UCCDate" ColumnName="UCCDate" />
+                <ScalarProperty Name="UCCStatus" ColumnName="UCCStatus" />
+                <ScalarProperty Name="TitleStatus" ColumnName="TitleStatus" />
+                <ScalarProperty Name="LeaseTerminationDate" ColumnName="LeaseTerminationDate" />
+                <ScalarProperty Name="IsSaleTaxExept" ColumnName="IsSaleTaxExept" />
+                <ScalarProperty Name="TitleHolder" ColumnName="TitleHolder" />
+                <ScalarProperty Name="LeaseDocumentForm" ColumnName="LeaseDocumentForm" />
+                <ScalarProperty Name="VendorCost" ColumnName="VendorCost" />
+                <ScalarProperty Name="InsuranceExpiry" ColumnName="InsuranceExpiry" />
+                <ScalarProperty Name="InsuranceProvider" ColumnName="InsuranceProvider" />
+                <ScalarProperty Name="AccountRep3" ColumnName="AccountRep3" />
+                <ScalarProperty Name="AccountRep2" ColumnName="AccountRep2" />
+                <ScalarProperty Name="AccountRep1" ColumnName="AccountRep1" />
+                <ScalarProperty Name="MMA" ColumnName="MMA" />
+                <ScalarProperty Name="EstimatedPropertyTax" ColumnName="EstimatedPropertyTax" />
+                <ScalarProperty Name="Residual" ColumnName="Residual" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+                <ScalarProperty Name="LeaseFee" ColumnName="LeaseFee" />
+                <ScalarProperty Name="Lender" ColumnName="Lender" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
+                <ScalarProperty Name="MonthlyPayment" ColumnName="MonthlyPayment" />
+                <ScalarProperty Name="TotalLeaase" ColumnName="TotalLeaase" />
+                <ScalarProperty Name="LeaseType" ColumnName="LeaseType" />
+                <ScalarProperty Name="DealOrigin" ColumnName="DealOrigin" />
+                <ScalarProperty Name="LeaseID" ColumnName="LeaseID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LesseMaturityDate" ColumnName="LesseMaturityDate" />
+                <ScalarProperty Name="FirstPaymentToBankDate" ColumnName="FirstPaymentToBankDate" />
+                <ScalarProperty Name="FirstPaymentDate" ColumnName="FirstPaymentDate" />
+                <ScalarProperty Name="FundDate" ColumnName="FundDate" />
+                <ScalarProperty Name="LesseDate" ColumnName="LesseDate" />
+                <ScalarProperty Name="Lesse" ColumnName="Lesse" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="LeaseMgtDBModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
