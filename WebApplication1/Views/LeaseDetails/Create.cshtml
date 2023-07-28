@@ -378,6 +378,7 @@
                                 let yearToAdd = paymentToBankDate.getFullYear();
                                 if (paymentToBankDate != null && paymentToBankDate.toString() != "".trim() && monthsToAdd != null && monthsToAdd.toString() != "".trim()) {
                                     //paymentToBankDate = new Date(paymentToBankDate);
+                                    //let monthss = paymentToBankDate.getMonth() + 1;
                                     let monthss = paymentToBankDate.getMonth() + 1;
                                     monthsToAdd = parseInt(monthsToAdd) + parseInt(monthss) - 1;
                                     if (monthsToAdd > 12) {

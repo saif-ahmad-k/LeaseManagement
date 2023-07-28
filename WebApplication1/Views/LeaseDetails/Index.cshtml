@@ -205,9 +205,9 @@
                                     @*<th>
                                         @Html.DisplayName("FUNDED MO/YR")
                                     </th>*@
-                                    <th>
+                                    @*<th>
                                         @Html.DisplayName("LEASE COUNT")
-                                    </th>
+                                    </th>*@
                                     @*<th>
                                         @Html.DisplayName("BANK CHK - LESSEE-BANK TAB")
                                     </th>
@@ -249,7 +249,7 @@
                                         <td>
                                             @if (item.LesseDate.HasValue)
                                             {
-                                                @item.LesseDate.Value.ToString("MM/yy/dd")
+                                                @item.LesseDate.Value.ToString("dd/MM/yy")
                                             }
                                             else
                                             {
@@ -259,7 +259,7 @@
                                         <td>
                                             @if (item.FundDate.HasValue)
                                             {
-                                                @item.FundDate.Value.ToString("MM/yy/dd")
+                                                @item.FundDate.Value.ToString("dd/MM/yy")
                                             }
                                             else
                                             {
@@ -269,7 +269,7 @@
                                         <td>
                                             @if (item.FirstPaymentToBankDate.HasValue)
                                             {
-                                                @item.FirstPaymentToBankDate.Value.ToString("MM/yy/dd")
+                                                @item.FirstPaymentToBankDate.Value.ToString("dd/MM/yy")
                                             }
                                             else
                                             {
@@ -279,7 +279,7 @@
                                         <td>
                                             @if (item.FirstPaymentToBankDate.HasValue)
                                             {
-                                                @item.FirstPaymentToBankDate.Value.ToString("MM/yy/dd")
+                                                @item.FirstPaymentToBankDate.Value.ToString("dd/MM/yy")
                                             }
                                             else
                                             {
@@ -347,7 +347,14 @@
                                             @Html.DisplayFor(modelItem => item.InsuranceProvider)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.InsuranceExpiry)
+                                            @if (item.InsuranceExpiry.HasValue)
+                                            {
+                                                @item.InsuranceExpiry.Value.ToString("dd/MM/yy")
+                                            }
+                                            else
+                                            {
+                                                <span></span>
+                                            }
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.VendorCostString)
@@ -413,9 +420,9 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Comments2)
                                         </td>
-                                        <td>
+                                        @*<td>
                                             @Html.DisplayFor(modelItem => item.LeaseYear)
-                                        </td>
+                                        </td>*@
                                         @*<td>
                                             @Html.DisplayFor(modelItem => item.LeaseTerminationDate)
                                         </td>*@
