@@ -375,29 +375,22 @@
                                 /*alert(vals.toString());*/
                             }
                             function CalculateMaturityDate() {
-                                let paymentToBankDate = new Date($("#FirstPaymentToBankDate").val());
-                                let monthsToAdd = $("#Term").val();
-                                let yearToAdd = paymentToBankDate.getFullYear();
-                                if (paymentToBankDate != null && paymentToBankDate.toString() != "".trim() && monthsToAdd != null && monthsToAdd.toString() != "".trim()) {
-                                    //paymentToBankDate = new Date(paymentToBankDate);
-                                    let monthss = paymentToBankDate.getMonth() + 1;
-                                    monthsToAdd = parseInt(monthsToAdd) + parseInt(monthss) - 1;
-                                    if (monthsToAdd > 12) {
-                                        const dividerYear = monthsToAdd / 12;
-                                        yearToAdd = yearToAdd + parseInt(dividerYear);
+                                let termMonths = parseInt($("#Term").val());
 
-                                        monthsToAdd = monthsToAdd - (parseInt(dividerYear) * 12);
-                                    }
-                                    //else {
-                                    //    paymentToBankDate.setMonth(monthsToAdd);
-                                    //}
-                                    var day = ("0" + paymentToBankDate.getDate()).slice(-2);
-                                    monthsToAdd = ("0" + monthsToAdd).slice(-2);
+                                if (!isNaN(termMonths)) {
+                                    let currentDate = new Date();
+                                    let maturityDate = new Date(currentDate);
 
-                                    var today = yearToAdd + "-" + (monthsToAdd) + "-" + (day);
-                                    $("#LesseMaturityDate").val(today); 
+                                    maturityDate.setMonth(maturityDate.getMonth() + termMonths - 1);
+
+                                    let day = ("0" + maturityDate.getDate()).slice(-2);
+                                    let month = ("0" + (maturityDate.getMonth() + 1)).slice(-2);
+                                    let year = maturityDate.getFullYear();
+                                    //month = month - 1;
+                                    let formattedDate = year + "-" + month + "-" + day;
+
+                                    $("#LesseMaturityDate").val(formattedDate);
                                 }
-                                /*alert(vals.toString());*/
                             }
                             function CalculateLeaseYear(lessedate) {
                                 let paymentToBankDate = new Date(lessedate);

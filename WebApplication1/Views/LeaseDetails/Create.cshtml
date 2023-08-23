@@ -405,12 +405,12 @@
                                     let currentDate = new Date();
                                     let maturityDate = new Date(currentDate);
 
-                                    maturityDate.setMonth(maturityDate.getMonth() + termMonths);
+                                    maturityDate.setMonth(maturityDate.getMonth() + termMonths -1);
 
                                     let day = ("0" + maturityDate.getDate()).slice(-2);
                                     let month = ("0" + (maturityDate.getMonth() + 1)).slice(-2);
                                     let year = maturityDate.getFullYear();
-
+                                    //month = month - 1;
                                     let formattedDate = year + "-" + month + "-" + day;
 
                                     $("#LesseMaturityDate").val(formattedDate);
