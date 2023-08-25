@@ -80,7 +80,7 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,LastName,FirstName,Age,Email,City,Address")] tblCustomer tblCustomer)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,LastName")] tblCustomer tblCustomer)
         {
             if (ModelState.IsValid)
             {

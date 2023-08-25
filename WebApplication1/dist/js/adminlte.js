@@ -718,7 +718,7 @@ throw new Error('AdminLTE requires jQuery')
     open          : '.sidebar-open',
     mainSidebar   : '.main-sidebar',
     contentWrapper: '.content-wrapper',
-    searchInput   : '.sidebar-form .form-control',
+    searchInput   : '.sidebar-form .form-control form-control-sm',
     button        : '[data-toggle="push-menu"]',
     mini          : '.sidebar-mini',
     expanded      : '.sidebar-expanded-on-hover',

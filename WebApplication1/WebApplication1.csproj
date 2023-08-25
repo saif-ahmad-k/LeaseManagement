@@ -667,6 +667,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\logo3.bmp" />
+    <Content Include="Images\logo3.png" />
     <Content Include="Images\STS1.png" />
     <Content Include="Models\DataContextModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

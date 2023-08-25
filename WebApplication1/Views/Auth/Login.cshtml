@@ -5,6 +5,7 @@
     var message = TempData["Message"];
 }
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,8 +34,10 @@
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="assets/js/html5shiv.min.js"></script>
+
         <script src="assets/js/respond.min.js"></script>
     <![endif]-->
+
 </head>
 <body class="account-page">
 
@@ -44,54 +47,63 @@
 
             <div class="container">
 
-                <!-- Account Logo -->
-                @*<div class="account-logo">
-                        <a href="index.html"><img src="assets/img/logo.png" alt="Dreamguy's Technologies"></a>
-                    </div>*@
-                <!-- /Account Logo -->
+                <div class="row">
+                    <!-- Left side with logo and description -->
+                    <div class="col-md-6 login-logo-section" style="background-color: #f8f9fa; padding: 50px;">
+                        <div class="account-logo">
+                            <a href="index.html"><img src="\Images\logo3.png" alt="Your Logo" style="width: 500px; height: auto;"></a>
+                        </div>
+                        <div class="logo-description">
+                            <h2>Capital Asset Resources</h2>
+                            @*<p>Chemin de Chamoryon 24, 1806 St. Legier, Vaud/Switzerland. Email: WdHCoffeeConsulting@gmail.com</p>*@
+                        </div>
+                    </div>
 
-                <div class="account-box">
-                    <div class="account-wrapper">
-                        <h3 class="account-title">Login</h3>
-                        @*<p class="account-subtitle">Access to our dashboard</p>*@
+                    <!-- Right side with login form -->
+                    <div class="col-md-6 login-form-section" style="background-color: #ffffff; padding: 50px;">
+                        <div class="account-box">
+                            <div class="account-wrapper">
+                                <h3 class="account-title">Login</h3>
 
-                        <!-- Account Form -->
-                        @using (Html.BeginForm())
-                        {
-                            @Html.AntiForgeryToken()
-
-                            <form style="height:407px;width:361px;">
-                                @if (message != null)
+                                @using (Html.BeginForm())
                                 {
-                                    <div class="alert alert-success">
-                                        <strong>@message.ToString()</strong>
+                                    @Html.AntiForgeryToken()
+
+                                    if (message != null)
+                                    {
+                                        <div class="alert alert-success">
+                                            <strong>@message.ToString()</strong>
+                                        </div>
+                                    }
+
+                                    <div class="inset">
+                                        <p>
+                                            @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-4 col-form-label-sm" })
+                                            @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control form-control-sm", required = "required" } })
+                                        </p>
+                                        <p>
+                                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-4 col-form-label-sm" })
+                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control form-control-sm", @type = "password", required = "required" } })
+                                        </p>
+                                        <span style="color: red; font-size: 14px;" id="errMsg"></span>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <div style="padding-bottom: 10px;">
+                                            <button type="submit" class="btn btn-primary account-btn" name="command" value="Login">Log in</button>
+                                        </div>
                                     </div>
                                 }
-                                <div class="inset">
-                                    <p>
-                                        @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
-                                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                                    </p>
-                                    <p>
-                                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", required = "required" } })
-                                    </p>
-                                    <span style="color: red;font-size: 14px;" id="errMsg"></span>
-                                </div>
-                                <div class="form-group text-center">
-                                    <div style="padding-bottom:10px"><button type="submit" class="btn btn-primary account-btn" name="command" value="Login">Log in </button></div>
-                                    @*<div><button type="submit" class="btn btn-primary account-btn" name="command" value="Clockout">Clock out</button></div>*@
-                                    @*@Html.ActionLink("Forget Password?", "ForgetPassword", "Auth")*@
-                                </div>
-                            </form>
-
-                        }
-                        <!-- /Account Form -->
+                            </div>
+                            @*<div>
+                                <a href="@Url.Action("RequestCredentials", "Auth")" class="btn btn-link">Request for Login Credentials</a>
+                            </div>*@
+                        </div>
 
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
     <!-- /Main Wrapper -->
     <!-- jQuery -->
@@ -103,6 +115,28 @@
 
     <!-- Custom JS -->
     <script src="~/Content/assets/js/app.js"></script>
+    <footer class="footer">
+        <p class="footer-text">Powered by Technoeagles | V1.0</p>
+    </footer>
 
+    <!-- jQuery and other scripts ... -->
+    <!-- Inline CSS for Footer -->
+    <style>
+        .footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            font-style: italic;
+            margin: 0;
+        }
+    </style>
 </body>
+
 </html>

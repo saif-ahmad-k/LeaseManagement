@@ -38,9 +38,9 @@
                             @Html.HiddenFor(p => p.ID)
                            
                             <div class="form-group">
-                                @Html.Label("Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.Label("Last Name", htmlAttributes: new { @class = "control-label col-md-4 col-form-label-sm" })
                                 <div class="col-md-12 mb-3">
-                                    @Html.EditorFor(p => p.LastName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                    @Html.EditorFor(p => p.LastName, new { htmlAttributes = new { @class = "form-control form-control-sm", autocomplete = "off" } })
                                 </div>
                             </div>
                             
