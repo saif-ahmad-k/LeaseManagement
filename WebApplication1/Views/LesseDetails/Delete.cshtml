@@ -1,0 +1,465 @@
+﻿@model WebApplication1.Models.tblLesseDetail
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tblLesseDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Lesse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lesse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LesseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LesseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FundDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FundDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstPaymentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstPaymentDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstPaymentToBankDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstPaymentToBankDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LesseMaturityDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LesseMaturityDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaseID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaseID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DealOrigin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DealOrigin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaseType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaseType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalLeaase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalLeaase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MonthlyPayment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonthlyPayment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Term)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Term)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaseFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaseFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Residual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Residual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstimatedPropertyTax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstimatedPropertyTax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MMA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MMA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountRep1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountRep1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountRep2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountRep2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountRep3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountRep3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InsuranceProvider)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InsuranceProvider)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InsuranceExpiry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InsuranceExpiry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VendorCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VendorCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaseDocumentForm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaseDocumentForm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleHolder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleHolder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSaleTaxExept)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSaleTaxExept)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaseTerminationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaseTerminationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UCCStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UCCStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UCCDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UCCDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyTaxStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyTaxStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CollateralStreet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CollateralStreet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CollateralCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CollateralCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CollateralState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CollateralState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CollateralZipCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CollateralZipCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CollateralCountry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CollateralCountry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MailingStreet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MailingStreet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MailingCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MailingCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MailingState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MailingState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MailingZipCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MailingZipCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comments1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comments2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaseYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaseYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaseMonthAndYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaseMonthAndYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FundedMonthAndYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FundedMonthAndYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaseCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeaseCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BANKCHK_LESSEEBANK_TAB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BANKCHK_LESSEEBANK_TAB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BANKCHK_BANKYEAR_TAB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BANKCHK_BANKYEAR_TAB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BANKCHK_BANKMONTH_TAB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BANKCHK_BANKMONTH_TAB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LESSEECHK_LESSEEBANK_TAB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LESSEECHK_LESSEEBANK_TAB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LESSEECHK_LESSEEYEAR_TAB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LESSEECHK_LESSEEYEAR_TAB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LESSEECHK_LESSEEMONTH_TAB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LESSEECHK_LESSEEMONTH_TAB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblCustomer.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblCustomer.LastName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

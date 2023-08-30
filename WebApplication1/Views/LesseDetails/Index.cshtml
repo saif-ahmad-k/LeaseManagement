@@ -1,0 +1,430 @@
+﻿@model WebApplication1.Models.LesseDetailVMForList
+
+@{
+    ViewBag.Title = "Lease List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var role = Session["Role"];
+    string rolename = "";
+    if (role != null)
+    {
+        rolename = role.ToString();
+    }
+}
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css">
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
+
+</head>
+@using (Html.BeginForm())
+{
+    <form class="form-horizontal">
+        <div class="content container-fluid" style="padding-top:15px">
+            <div class="row col-md-12">
+                <div class="col-md-11"><h4>@ViewBag.Title</h4></div>
+                <div class="col-md-1 pull-right">
+                    <a type="button" href="@Url.Action("Create", "LesseDetails")" class="btn btn-primary">Add New</a>
+                </div>
+            </div>
+            <div class="row col-md-12">
+                <div class="form-group col-md-3">
+                    @Html.Label("From Date", htmlAttributes: new { @class = "control-label" })
+                    <div class="">
+                        @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @class = "form-control date-picker", @type = "date", autocomplete = "off" } })
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    @Html.Label("To Date", htmlAttributes: new { @class = "control-label" })
+                    <div class="">
+                        @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @class = "form-control date-picker", @type = "date", autocomplete = "off" } })
+                    </div>
+                </div>
+                <div class="col-md-3" style="padding-top:33px">
+                    <input type="submit" value="Search" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card mb-0 ml-2 mr-2">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example" class="table table-stripped mb-0 datatables">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayName("Lease")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Date")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Fund Date")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("1ST PAYMENT DATE")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("1ST PAYMENT TO BANK DATE")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("LEASE MATURITY DATE")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("DESCRIPTION")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("LEASE ID")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("DEAL ORIGIN")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("LEASE TYPE")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("TOTAL LEASE")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("MTHLY PMT")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("TERM")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("LENDER")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("LEASE FEE")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("VIN")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("RESIDUAL")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("ESTIMATED PROPERTY TAX")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("MMA")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("LEASE ID")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("ACCOUNT REP1")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("ACCOUNT REP2")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("ACCOUNT REP3")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("INSURANCE PROVIDER")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("INSURANCE EXPIRY")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("VENDOR COST")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("LEASE DOCUMENT FORM")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("TITLE HOLDER")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("SALES-TAX EXEMPT?")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("LEASE TERMINATION DATE")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("TITLE STATUS")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("UCC STATUS")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("UCC DATE")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("PROPERTY TAX STATUS")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("STREET")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("CITY")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("STATE")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("ZIP CODE")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("COUNTY")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("STREET")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("CITY")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("STATE")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("ZIP CODE")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("COMMENTS1")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("COMMENTS2")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("LEASE YEAR")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("LEASE MO/YR")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("FUNDED MO/YR")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("LEASE COUNT")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("BANK CHK - LESSEE-BANK TAB")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("BANK CHK - BANK-YEAR TAB")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("BANK CHK - BANK-MONTH TAB")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("LESSEE CHK - LESSEE-BANK TAB")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("LESSEE CHK - LESSEE-YEAR TAB")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("LESSEE CHK - LESSEE-MONTH TAB")
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.LesseDetailList)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Lesse)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LesseDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FundDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FirstPaymentDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FirstPaymentToBankDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LesseMaturityDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LeaseID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DealOrigin)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LeaseType)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalLeaase)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MonthlyPayment)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Term)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Lender)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LeaseFee)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VIN)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Residual)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EstimatedPropertyTax)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MMA)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.AccountRep1)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.AccountRep2)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.AccountRep3)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.InsuranceProvider)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.InsuranceExpiry)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VendorCost)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LeaseDocumentForm)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TitleHolder)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IsSaleTaxExept)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LeaseTerminationDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TitleStatus)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UCCStatus)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UCCDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PropertyTaxStatus)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CollateralStreet)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CollateralCity)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CollateralState)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CollateralZipCode)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CollateralCountry)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MailingStreet)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MailingCity)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MailingState)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MailingZipCode)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Comments1)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Comments2)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LeaseYear)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LeaseTerminationDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LeaseMonthAndYear)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FundedMonthAndYear)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LeaseCount)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BANKCHK_LESSEEBANK_TAB)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BANKCHK_BANKYEAR_TAB)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BANKCHK_BANKMONTH_TAB)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LESSEECHK_LESSEEBANK_TAB)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LESSEECHK_LESSEEYEAR_TAB)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LESSEECHK_LESSEEMONTH_TAB)
+                                        </td>
+                                        <td>
+                                            @if (rolename == "Admin")
+                                            {
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        ////$("#example").dataTable().fnDestroy();
+        //$('#example').DataTable({
+        //    dom: 'Bfrtip',
+        //    buttons: [
+        //        'copy', 'csv', 'excel', 'pdf', 'print'
+        //    ]
+        //});
+        $('#example').DataTable({
+            destroy: true,
+            searching: true,
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    </script>
+}

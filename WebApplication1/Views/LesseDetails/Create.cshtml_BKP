@@ -1,0 +1,367 @@
+﻿@model WebApplication1.Models.tblLesseDetail
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="content container-fluid">
+                                <div class="card mb-4 mt-3" style="padding-top:10px">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Create new</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <form class="needs-validation" novalidate>
+                                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                    <div class="form-group" id="CustomerDropdownDiv">
+                                                        @Html.Label("CustomerID", "Select Lease (if existing)", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.DropDownList("CustomerID", null, htmlAttributes: new { @class = "form-control", @onchange="CustomerDropdownChangeEvent(this.value);" })
+                                                            @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" id="CustomerTextBoxDiv">
+                                                        @Html.Label("Add Lease (if new)", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.Lesse, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", @onchange= "CustomerTextBoxChangeEvent(this.value);" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Lease Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            <input type="date" class="form-control" autocomplete="off" name="LesseDate" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Fund Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.FundDate, new { htmlAttributes = new { @type = "date", @class = "form-control date-picker", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("First Payment Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.FirstPaymentDate, new { htmlAttributes = new { @type = "date", @class = "form-control date-picker", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("First Payment To Bank Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.FirstPaymentToBankDate, new { htmlAttributes = new { @type = "date", @class = "form-control date-picker", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Lease Maturity Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.LesseMaturityDate, new { htmlAttributes = new { @type = "date", @class = "form-control date-picker", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        @Html.Label("Description", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.Description, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Lease ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.LeaseID, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Deal Origin", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.DealOrigin, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Lease Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.LeaseType, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Total Lease", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.TotalLeaase, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Monthly Payment", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.MonthlyPayment, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Term", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.Term, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Lender", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.Lender, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        @Html.Label("Lease Fee", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.LeaseFee, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("VIN", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.VIN, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Residual", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.Residual, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Estimated Property Tax", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.EstimatedPropertyTax, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("MMA", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.MMA, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Account Rep 1", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.AccountRep1, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        @Html.Label("Account Rep 2", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.AccountRep2, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Account Rep 3", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.AccountRep3, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Insurance Provider", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.InsuranceProvider, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Insurance Expiry", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.InsuranceExpiry, new { htmlAttributes = new { @type = "date", @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Vendor Cost", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.VendorCost, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Lease Document Form", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.LeaseDocumentForm, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Title Holder", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.TitleHolder, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Is Sale Tax Exept", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.IsSaleTaxExept, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Lease Termination Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.LeaseTerminationDate, new { htmlAttributes = new { @type = "date", @class = "form-control date-picker", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Title Status", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.TitleStatus, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("UCC Status", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.UCCStatus, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("UCC Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.UCCDate, new { htmlAttributes = new { @type = "date", @class = "form-control date-picker", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Property Tax Status", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.PropertyTaxStatus, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Collateral Street", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.CollateralStreet, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        @Html.Label("Collateral City", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.CollateralCity, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Collateral State", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.CollateralState, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Collateral ZipCode", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.CollateralZipCode, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Collateral County", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.CollateralCountry, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Mailing Street", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.MailingStreet, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Mailing City", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.MailingCity, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Mailing State", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.MailingState, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Mailing ZipCode", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.MailingZipCode, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Comments 1", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.Comments1, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Comments 2", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.Comments2, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("LeaseYear", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.LeaseYear, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Lease Month & Year", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.LeaseMonthAndYear, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Funded Month & Year", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.FundedMonthAndYear, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.Label("Lease Count", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-12 mb-3">
+                                                            @Html.EditorFor(p => p.LeaseCount, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                                        </div>
+                                                    </div>
+                                                    <br />
+
+                                                    <div class=" row pull-right">
+                                                        <button type="submit" id="btnSave" class="btn btn-primary" style="padding-right:15px">Save</button>
+                                                        <div class="mt-0 btn btn-warning">@Html.ActionLink("Back to List", "Index")</div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                        <script type="text/javascript">
+                            function CustomerDropdownChangeEvent(idval) {
+                                if (idval != 0) {
+                                    $("#CustomerTextBoxDiv").hide();
+                                } else {
+                                    $("#CustomerTextBoxDiv").show();
+                                    $("#CustomerDropdownDiv").hide(); 
+                                }
+                                /*alert(vals.toString());*/
+                            }
+                            function CustomerTextBoxChangeEvent(idval) {
+                                if (idval != null && idval.toString() != "".trim()) {
+                                    $("#CustomerDropdownDiv").hide();
+                                } else {
+                                    $("#CustomerDropdownDiv").show();
+                                    $("#CustomerTextBoxDiv").hide();
+                                }
+                                /*alert(vals.toString());*/
+                            }
+                                //$.noConflict();
+                                //jQuery(document).ready(function ($) {
+                                //    $(function () {
+                                //        $('.date-picker').datepicker();
+                                //    });
+                                //});
+
+
+                                ////var $j = jQuery.noConflict();
+                                ////$j('.date-picker').datepicker({
+                                ////    dateFormat: "dd/M/yy"
+                                ////});
+                                ////$j('.timepicker').timepicker({
+                                ////    showInputs: false
+                                ////})
+                        </script>
